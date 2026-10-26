@@ -1,0 +1,19 @@
+@host = http://localhost:5025
+
+### Listar categorias
+GET {{host}}/api/v1/categorias
+
+### Crear categoria
+POST {{host}}/api/v1/categorias
+Content-Type: application/json
+
+{ "nombre": "Bebidas", "descripcion": "Gaseosas y jugos" }
+
+### Listar productos
+GET {{host}}/api/v1/productos
+
+### Crear producto
+POST {{host}}/api/v1/productos
+Content-Type: application/json
+
+{ "nombre": "Coca Cola 2L", "precio": 12.5, "stock": 30, "estado": true, "categoriaId": 1 }

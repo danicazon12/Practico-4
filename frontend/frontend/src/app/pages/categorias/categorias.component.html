@@ -1,0 +1,42 @@
+<h2>Categorías</h2>
+
+<app-alerta [mensaje]="error()" />
+
+<form (ngSubmit)="guardar()">
+  <label>
+    Nombre
+    <input name="nombre" [(ngModel)]="form.nombre" required>
+  </label>
+  <label>
+    Descripción
+    <input name="descripcion" [(ngModel)]="form.descripcion">
+  </label>
+  <div class="acciones">
+    <button type="submit">{{ editandoId() === null ? 'Agregar' : 'Guardar cambios' }}</button>
+    @if (editandoId() !== null) {
+      <button type="button" class="gris" (click)="cancelar()">Cancelar</button>
+    }
+  </div>
+</form>
+
+<table>
+  <thead>
+    <tr><th>Id</th><th>Nombre</th><th>Descripción</th><th>Productos</th><th></th></tr>
+  </thead>
+  <tbody>
+    @for (c of categorias(); track c.id) {
+      <tr>
+        <td>{{ c.id }}</td>
+        <td>{{ c.nombre }}</td>
+        <td>{{ c.descripcion }}</td>
+        <td>{{ c.cantidadProductos }}</td>
+        <td class="acciones">
+          <button type="button" (click)="editar(c)">Editar</button>
+          <button type="button" class="rojo" (click)="eliminar(c)">Eliminar</button>
+        </td>
+      </tr>
+    } @empty {
+      <tr><td colspan="5">No hay categorías registradas.</td></tr>
+    }
+  </tbody>
+</table>
